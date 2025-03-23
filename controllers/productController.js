@@ -68,3 +68,21 @@ export const deleteProduct = async (req, res) =>{
     }
 }
 
+export const searchProducts = async (req, res) => {
+    const {q} = req.query
+
+    try {
+        const results = await prisma.product.findMany({
+            where: {
+                product_name: {
+                    contains: q,
+                    mode: "insensitive"
+                }
+            }
+        })
+        res.json(results)
+    } catch(error) {
+        res.status(500).json({error: "Server error"})
+    }
+}
+
