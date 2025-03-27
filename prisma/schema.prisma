@@ -14,18 +14,17 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  name String
-  email String @unique
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
   password String
-  role String @default("admin")
+  role     String @default("admin")
 }
 
 model Product {
-  id Int @id @default(autoincrement())
-  product_name String
+  id                  Int     @id @default(autoincrement())
+  product_name        String
   product_desctiption String
-  price Float
-  product_image String?
-  
+  price               Float
+  product_image       String?
 }

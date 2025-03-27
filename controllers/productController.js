@@ -71,12 +71,16 @@ export const deleteProduct = async (req, res) =>{
 export const searchProducts = async (req, res) => {
     const {q} = req.query
 
+    if(!q || typeof q !== "string" || q.trim() === "" ){
+        return res.status(400).json({error: "No data in q"})
+    }
+
     try {
         const results = await prisma.product.findMany({
             where: {
                 product_name: {
-                    contains: q,
-                    mode: "insensitive"
+                    contains: q.trim().toLowerCase(),
+                    //mode: "insensitive"
                 }
             }
         })
