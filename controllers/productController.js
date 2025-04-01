@@ -80,13 +80,13 @@ export const searchProducts = async (req, res) => {
             where: {
                 product_name: {
                     contains: q.trim().toLowerCase(),
-                    //mode: "insensitive"
+                    mode: "insensitive"
                 }
             }
         })
         res.json(results)
     } catch(error) {
-        res.status(500).json({error: "Server error"})
+        res.status(500).json({error: "Server error"}) 
     }
 }
 
