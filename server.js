@@ -4,6 +4,7 @@ import cors from "cors"
 import userRouter from "./routes/userRouter.js"
 import productRouter from "./routes/productRouter.js"
 import cookieParser from "cookie-parser"
+import categoryRouter from "./routes/categoryRouter.js"
 
 dotenv.config()
 const app =express()
@@ -17,6 +18,7 @@ app.use(cookieParser())
 
 app.use("/api/users", userRouter)
 app.use("/api/products", productRouter) 
+app.use("/api/categories", categoryRouter)
 
 const PORT = process.env.PORT || 5000
 

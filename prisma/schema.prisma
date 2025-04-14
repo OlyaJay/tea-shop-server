@@ -22,9 +22,17 @@ model User {
 }
 
 model Product {
-  id                  Int     @id @default(autoincrement())
+  id                  Int      @id @default(autoincrement())
   product_name        String
   product_desctiption String
   price               Float
   product_image       String?
+  category            String   @default("Unknown")
+  quatity             Int      @default(0)
+  createdAt           DateTime @default(now())
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
 }
