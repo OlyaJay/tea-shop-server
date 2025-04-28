@@ -19,6 +19,7 @@ model User {
   email    String @unique
   password String
   role     String @default("admin")
+  cart     Cart[]
 }
 
 model Product {
@@ -30,9 +31,20 @@ model Product {
   category            String   @default("Unknown")
   quatity             Int      @default(0)
   createdAt           DateTime @default(now())
+  cart                Cart[]  
 }
 
 model Category {
   id   Int    @id @default(autoincrement())
   name String @unique
+}
+
+model Cart{
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
 }
